@@ -38,7 +38,6 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes/:id",
         element: <CupcakeDetails />,
-        loader: CupcakeListLoader,
       },
     ],
   },

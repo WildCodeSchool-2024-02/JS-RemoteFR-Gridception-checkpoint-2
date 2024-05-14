@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import "./Cupcake.css";
 import { Link } from "react-router-dom";
 
-function Cupcake({ name, cream1, cream2, cream3, accessory }) {
+function Cupcake({ name, color1, color2, color3, accessory }) {
   return (
     <div className="cupcake-container">
       <div className="cupcake">
@@ -12,19 +12,19 @@ function Cupcake({ name, cream1, cream2, cream3, accessory }) {
           <div
             className="cream-1"
             style={{
-              backgroundColor: cream1,
+              backgroundColor: color1,
             }}
           />
           <div
             className="cream-2"
             style={{
-              backgroundColor: cream2,
+              backgroundColor: color2,
             }}
           />
           <div
             className="cream-3"
             style={{
-              backgroundColor: cream3,
+              backgroundColor: color3,
             }}
           />
         </div>
@@ -55,9 +55,9 @@ Cupcake.propTypes = {
     color3: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
-  cream1: PropTypes.string.isRequired,
-  cream2: PropTypes.string.isRequired,
-  cream3: PropTypes.string.isRequired,
+  color1: PropTypes.string.isRequired,
+  color2: PropTypes.string.isRequired,
+  color3: PropTypes.string.isRequired,
   accessory: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
 };

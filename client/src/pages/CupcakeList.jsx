@@ -88,9 +88,9 @@ function CupcakeList() {
           .map((cupcake) => (
             <div key={cupcake.id}>
               <Cupcake
-                cream1={cupcake.color1}
-                cream2={cupcake.color2}
-                cream3={cupcake.color3}
+                color1={cupcake.color1}
+                color2={cupcake.color2}
+                color3={cupcake.color3}
                 accessory={cupcake.accessory}
                 name={cupcake.name}
               />
