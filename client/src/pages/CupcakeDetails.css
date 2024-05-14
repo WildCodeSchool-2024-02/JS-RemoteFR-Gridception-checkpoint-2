@@ -1,0 +1,10 @@
+.CupcakeDetailsComponent {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  .return {
+    background-color: #fac564;
+    padding: 0.5rem;
+    border-radius: 5px;
+  }
+}
