@@ -43,9 +43,12 @@ function CupcakeList() {
   // Step 1: get all cupcakes
 
   const cupcakes = useLoaderData();
-  console.info(useLoaderData);
+  console.info(useLoaderData());
 
-  const [accessories, setAccessories] = useState(null);
+  const [accessories, setAccessories] = useState([]);
+  const [choice, setChoice] = useState("");
+
+  console.info(choice);
 
   // Step 3: get all accessories
   useEffect(() => {
@@ -64,8 +67,17 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
+          <select
+            id="cupcake-select"
+            onChange={(e) => setChoice(e.target.value)}
+          >
+            <option value="">All</option>
+            {accessories.map((accessory) => (
+              <option key={accessory.id} value={accessory.slug}>
+                {accessory.name}
+              </option>
+            ))}
+
             {/* Step 4: add an option for each accessory */}
           </select>
         </label>
@@ -74,16 +86,18 @@ function CupcakeList() {
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
-          {cupcakes.map((cupcake) => (
-            <Cupcake
-              key={cupcake.id}
-              color1={cupcake.color1}
-              color2={cupcake.color2}
-              color3={cupcake.color3}
-              accessory={cupcake.accessory}
-              name={cupcake.name}
-            />
-          ))}
+          {cupcakes
+            .filter((cupcake) => cupcake.accessory === choice || !choice)
+            .map((cupcake) => (
+              <Cupcake
+                key={cupcake.id}
+                color1={cupcake.color1}
+                color2={cupcake.color2}
+                color3={cupcake.color3}
+                accessory={cupcake.accessory}
+                name={cupcake.name}
+              />
+            ))}
         </li>
         {/* end of block */}
       </ul>
