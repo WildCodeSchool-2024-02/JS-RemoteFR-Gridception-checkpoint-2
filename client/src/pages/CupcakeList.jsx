@@ -92,6 +92,7 @@ function CupcakeList() {
                 cream2={cupcake.color2}
                 cream3={cupcake.color3}
                 accessory={cupcake.accessory}
+                name={cupcake.name}
               />
             </div>
           ))}

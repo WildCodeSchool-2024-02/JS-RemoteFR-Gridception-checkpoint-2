@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import "./Cupcake.css";
 
-function Cupcake({ data, cream1, cream2, cream3, accessory }) {
+function Cupcake({ name, cream1, cream2, cream3, accessory }) {
   return (
     <div className="cupcake-container">
       <div className="cupcake">
@@ -40,7 +40,7 @@ function Cupcake({ data, cream1, cream2, cream3, accessory }) {
         </div>
       </div>
 
-      <div className="cupcake-name">{data.name}</div>
+      <div className="cupcake-name">{name}</div>
     </div>
   );
 }
@@ -57,9 +57,8 @@ Cupcake.propTypes = {
   cream2: PropTypes.string.isRequired,
   cream3: PropTypes.string.isRequired,
   accessory: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
-
-
 
 Cupcake.defaultProps = {
   data: {
