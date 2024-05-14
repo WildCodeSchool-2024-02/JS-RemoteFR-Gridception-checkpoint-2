@@ -88,11 +88,11 @@ function CupcakeList() {
           )
           .map((cupcake) => (
             <Link key={cupcake.id} to={`/cupcakes/${cupcake.id}`}>
-              <Cupcake key={cupcake.id} data={cupcake} />
+              <Cupcake data={cupcake} />
             </Link>
           ))}
         {/* Step 5: filter cupcakes before repeating */}
-        {/* <li className="cupcake-item"></li> */}
+
         {/* end of block */}
       </ul>
     </>
