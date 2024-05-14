@@ -33,13 +33,12 @@ const router = createBrowserRouter([
         path: "/cupcakes",
         element: <CupcakeList />,
         loader: cupCakesLoader,
-        children: [
-          {
-            path: "/cupcakes/:id",
-            element: <CupcakeDetails />
-          }
-        ]
       },
+      {
+        path: "/cupcakes/:id",
+        element: <CupcakeDetails />,
+        loader: cupCakesLoader,
+      }
     ],
   },
 ]);

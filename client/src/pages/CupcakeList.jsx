@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 
 import axios from "axios";
@@ -43,12 +43,12 @@ function CupcakeList() {
         {allCupcakes
         .filter((cupcake) => cupcake.accessory === FilterAccessories || !FilterAccessories)
         .map((cupcake) => (
-          <Cupcake key={cupcake.id} data={cupcake} />
-        ))}
-        <li className="cupcake-item">
-          <Cupcake />
+        <li key={cupcake.id} className="cupcake-item">
+        <Link to={`/cupcakes/${cupcake.id}`} state={{data: cupcake}}>
+              <Cupcake data={cupcake} />
+            </Link>
         </li>
-        {/* end of block */}
+        ))}
       </ul>
     </>
   );
