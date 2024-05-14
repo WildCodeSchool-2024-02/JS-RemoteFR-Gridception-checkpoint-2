@@ -2,11 +2,11 @@ import PropTypes from "prop-types";
 
 import "./Cupcake.css";
 
-function Cupcake({ data, cream1, cream2, cream3 }) {
+function Cupcake({ data, cream1, cream2, cream3, accessory }) {
   return (
     <div className="cupcake-container">
       <div className="cupcake">
-        <div className={`accessory ${data.accessory}`} />
+        <div className={`accessory ${accessory}`} />
         <div className="cream">
           <div
             className="cream-1"
@@ -56,6 +56,7 @@ Cupcake.propTypes = {
   cream1: PropTypes.string.isRequired,
   cream2: PropTypes.string.isRequired,
   cream3: PropTypes.string.isRequired,
+  accessory: PropTypes.string.isRequired,
 };
 
 
