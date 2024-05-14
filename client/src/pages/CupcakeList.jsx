@@ -2,7 +2,6 @@ import { useLoaderData, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
-/* ************************************************************************* */
 const someCupcakes = [];
 someCupcakes.push(
   {
@@ -34,15 +33,9 @@ someCupcakes.push(
   }
 );
 
-/* you can use someCupcakes if you're stucked on step 1 */
-/* if you're fine with step 1, just ignore this ;) */
-/* ************************************************************************* */
-
 function CupcakeList() {
-  // Step 1: get all cupcakes
   const cupcakes = useLoaderData();
 
-  // Step 3: get all accessories
   const [accessories, setAccessories] = useState([]);
 
   useEffect(() => {
@@ -54,7 +47,6 @@ function CupcakeList() {
     fetchData();
   }, []);
 
-  // Step 5: create filter state
   const [filter, setFilter] = useState("");
 
   return (
@@ -62,14 +54,13 @@ function CupcakeList() {
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
-          {/* Step 5: use a controlled component for select */}
           Filter by{" "}
           <select
             onChange={(e) => setFilter(e.target.value)}
             id="cupcake-select"
           >
             <option value="">All</option>
-            {/* Step 4: add an option for each accessory */}
+
             {accessories.map((accessory) => (
               <option key={accessory.id} value={accessory.slug}>
                 {accessory.name}
@@ -88,8 +79,6 @@ function CupcakeList() {
               </Link>
             </li>
           ))}
-        {/* Step 5: filter cupcakes before repeating */}
-        {/* end of block */}
       </ul>
     </>
   );
