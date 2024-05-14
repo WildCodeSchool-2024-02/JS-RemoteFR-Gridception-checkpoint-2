@@ -62,9 +62,10 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
-          <Cupcake />
+          <Cupcake data={getCupcakes} />
         </li>
         {/* end of block */}
       </ul>
