@@ -1,4 +1,7 @@
 import { useLoaderData } from "react-router-dom";
+
+import axios from "axios";
+import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -43,6 +46,14 @@ function CupcakeList() {
   const data = useLoaderData();
 
   // Step 3: get all accessories
+  const [accessories, setAccessories] = useState([]);
+  useEffect(() => {
+    axios.get("http://localhost:3310/api/accessories").then((res) => {
+      const dataEnvoyer = res.data;
+      setAccessories(dataEnvoyer);
+    });
+  }, []);
+  console.info(accessories);
 
   // Step 5: create filter state
 
