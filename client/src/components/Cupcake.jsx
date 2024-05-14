@@ -3,8 +3,10 @@ import PropTypes from "prop-types";
 import "./Cupcake.css";
 
 function Cupcake({ data }) {
+
+
   return (
-    <div className="cupcake-container">
+    <div id="" className="cupcake-container">
       <div className="cupcake">
         <div className={`accessory ${data.accessory}`} />
         <div className="cream">
