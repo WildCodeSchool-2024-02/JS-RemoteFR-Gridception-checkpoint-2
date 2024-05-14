@@ -55,6 +55,8 @@ function CupcakeList() {
 
   // Step 5: create filter state
 
+  const [filterChoice, setFilterChoice] = useState("");
+
   return (
     <>
       <h1>My cupcakes</h1>
@@ -62,7 +64,10 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            id="cupcake-select"
+            onChange={(event) => setFilterChoice(event.target.value)}
+          >
             <option value="">---</option>
             {/* Step 4: add an option for each accessory */}
             <option value="1">Cherry</option>
@@ -75,16 +80,21 @@ function CupcakeList() {
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {allCupcakes.map((cupcake) => (
-          <div key={cupcake.id}>
-            <Cupcake
-              cream1={cupcake.color1}
-              cream2={cupcake.color2}
-              cream3={cupcake.color3}
-            />
-          </div>
-        ))}
         {/* Step 5: filter cupcakes before repeating */}
+        {allCupcakes
+          .filter(
+            (cupcake) => cupcake.accessory_id === filterChoice || !filterChoice
+          )
+          .map((cupcake) => (
+            <div key={cupcake.id}>
+              <Cupcake
+                cream1={cupcake.color1}
+                cream2={cupcake.color2}
+                cream3={cupcake.color3}
+              />
+            </div>
+          ))}
+
         <li className="cupcake-item">
           <Cupcake />
         </li>
