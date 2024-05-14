@@ -1,29 +1,30 @@
 import PropTypes from "prop-types";
 
 import "./Cupcake.css";
+import { Link } from "react-router-dom";
 
-function Cupcake({ data }) {
+function Cupcake({ name, cream1, cream2, cream3, accessory }) {
   return (
     <div className="cupcake-container">
       <div className="cupcake">
-        <div className={`accessory ${data.accessory}`} />
+        <div className={`accessory ${accessory}`} />
         <div className="cream">
           <div
             className="cream-1"
             style={{
-              backgroundColor: data.color1,
+              backgroundColor: cream1,
             }}
           />
           <div
             className="cream-2"
             style={{
-              backgroundColor: data.color2,
+              backgroundColor: cream2,
             }}
           />
           <div
             className="cream-3"
             style={{
-              backgroundColor: data.color3,
+              backgroundColor: cream3,
             }}
           />
         </div>
@@ -40,7 +41,8 @@ function Cupcake({ data }) {
         </div>
       </div>
 
-      <div className="cupcake-name">{data.name}</div>
+      <div className="cupcake-name">{name}</div>
+      <Link to="/cupcakes/:id">More Details</Link>
     </div>
   );
 }
@@ -53,6 +55,11 @@ Cupcake.propTypes = {
     color3: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
+  cream1: PropTypes.string.isRequired,
+  cream2: PropTypes.string.isRequired,
+  cream3: PropTypes.string.isRequired,
+  accessory: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
 };
 
 Cupcake.defaultProps = {
