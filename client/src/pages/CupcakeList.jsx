@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Cupcake from "../components/Cupcake";
 
@@ -72,7 +72,7 @@ function CupcakeList() {
             {/* Step 4: add an option for each accessory */}
             {accessories.map((accessory) => (
               <option key={accessory.id} value={accessory.slug}>
-                {accessory.slug}
+                {accessory.name}
               </option>
             ))}
           </select>
@@ -83,11 +83,12 @@ function CupcakeList() {
           .filter((cupcake) => cupcake.accessory === filter || !filter)
           .map((cupcake) => (
             <li key={cupcake.id} className="cupcake-item">
-              <Cupcake data={cupcake} />
+              <Link to={`/cupcakes/${cupcake.id}`} state={{ data: cupcake }}>
+                <Cupcake data={cupcake} />
+              </Link>
             </li>
           ))}
         {/* Step 5: filter cupcakes before repeating */}
-
         {/* end of block */}
       </ul>
     </>

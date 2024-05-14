@@ -1,0 +1,17 @@
+.detailsTitle {
+  font-size: 2rem;
+}
+
+.CupcakeDetails {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.detailPara {
+  color: #de467c;
+}
+.detailSpan {
+  color: #9d9cdf;
+  font-weight: bold;
+}

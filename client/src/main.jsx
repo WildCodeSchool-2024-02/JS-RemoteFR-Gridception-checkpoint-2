@@ -8,6 +8,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
+import CupcakeDetails from "./pages/CupcakeDetails";
 
 const cupcakes = async () => {
   const response = await fetch("http://localhost:3310/api/cupcakes");
@@ -34,6 +35,11 @@ const router = createBrowserRouter([
         element: <CupcakeList />,
         loader: cupcakes,
       },
+      {
+        path: "/cupcakes/:id",
+        element: <CupcakeDetails />,
+        loader: cupcakes,
+      }
     ],
   },
 ]);
