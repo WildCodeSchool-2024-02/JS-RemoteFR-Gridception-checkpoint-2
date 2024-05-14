@@ -10,7 +10,7 @@ import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
 
 const cupcakeLoader = async () => {
-  const response = await fetch("localhost:3310/api/cupcakes");
+  const response = await fetch("http://localhost:3310/api/cupcakes");
   const data = await response.json();
   return data;
 };
