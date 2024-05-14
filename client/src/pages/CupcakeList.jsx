@@ -1,50 +1,29 @@
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable no-shadow */
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
-
-/* ************************************************************************* */
-const someCupcakes = [];
-someCupcakes.push(
-  {
-    id: 10,
-    accessory_id: "4",
-    accessory: "wcs",
-    color1: "blue",
-    color2: "white",
-    color3: "red",
-    name: "France",
-  },
-  {
-    id: 11,
-    accessory_id: "4",
-    accessory: "wcs",
-    color1: "yellow",
-    color2: "red",
-    color3: "black",
-    name: "Germany",
-  },
-  {
-    id: 27,
-    accessory_id: "5",
-    accessory: "christmas-candy",
-    color1: "yellow",
-    color2: "blue",
-    color3: "blue",
-    name: "Sweden",
-  }
-);
-
-/* you can use someCupcakes if you're stucked on step 1 */
-/* if you're fine with step 1, just ignore this ;) */
-/* ************************************************************************* */
 
 function CupcakeList() {
   // Step 1: get all cupcakes
   const cupcake = useLoaderData();
   console.info(cupcake);
 
-  // Step 3: get all accessories
+  const [datas, setDatas] = useState({});
 
+  // Step 3: get all accessories
+  useEffect(() => {
+    axios
+      .get("http://localhost:3310/api/accessories")
+      .then((results) => {
+        setDatas(results.data);
+      })
+      .catch((err) => console.info(err));
+  }, []);
+  console.info(datas);
+
+  const [filterChoise, setFilterChoise] = useState("");
   // Step 5: create filter state
 
   return (
@@ -54,19 +33,32 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            onChange={(e) => setFilterChoise(e.target.value)}
+            id="cupcake-select"
+          >
             <option value="">---</option>
+            {datas.map((accessorie) => (
+              <option key={accessorie.id} value={accessorie.id}>
+                {accessorie.name}
+              </option>
+            ))}
+
             {/* Step 4: add an option for each accessory */}
           </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
-        {cupcake.map((cupcake) => (
-          <li key={cupcake.id} className="cupcake-item">
-            <Cupcake data={cupcake} />
-          </li>
-        ))}
+        {cupcake
+          .filter(
+            (cupcake) => cupcake.accessory_id === filterChoise || !filterChoise
+          )
+          .map((cupcake) => (
+            <li key={cupcake.id} className="cupcake-item">
+              <Cupcake data={cupcake} />
+            </li>
+          ))}
         {/* Step 5: filter cupcakes before repeating */}
 
         {/* end of block */}
