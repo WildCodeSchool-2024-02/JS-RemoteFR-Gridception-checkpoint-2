@@ -13,6 +13,7 @@ function NavBar() {
         <NavLink className="secondary-btn btn" to="/instructions">
           Instructions
         </NavLink>
+        <NavLink className="third-btn btn" to="/cupcakes/:id">Cupcakes Details</NavLink>
       </div>
     </nav>
   );

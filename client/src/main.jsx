@@ -8,6 +8,7 @@ import App from "./App";
 import Home from "./pages/Home";
 import Instructions from "./pages/Instructions";
 import CupcakeList from "./pages/CupcakeList";
+import CupcakeDetails from "./pages/CupcakeDetails";
 
 
 const cupcakeLoader =  async () => {
@@ -35,6 +36,10 @@ const router = createBrowserRouter([
         element: <CupcakeList />,
         loader: cupcakeLoader
       },
+      {
+        path:"/cupcakes/:id",
+        element: <CupcakeDetails />,
+      }
     ],
   },
 ]);
