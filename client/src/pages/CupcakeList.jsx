@@ -87,7 +87,7 @@ function CupcakeList() {
           )
           .map((cupcake) => (
             <div key={cupcake.id}>
-              <Link to={`/cupcakes/${cupcake.id}`} state={{data: cupcake}}>
+              <Link to={`/cupcakes/${cupcake.id}`} state={{from: cupcake}}>
               <Cupcake
                 cream1={cupcake.color1}
                 cream2={cupcake.color2}

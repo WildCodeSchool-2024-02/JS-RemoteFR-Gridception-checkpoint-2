@@ -1,15 +1,14 @@
 import { useLocation } from "react-router-dom";
-import Cupcake from "../components/Cupcake";
 
 
 function CupcakeDetails () {
 
     const location = useLocation();
-    const {data} = location.state;
+    const {from} = location.state;
 
     return(
         <section>
-            <Cupcake data={data} />
+            <p from={from}> JE SUIS DANS MA PAGE CUPCAKE DETAILS</p>
         </section>
     );
 }
