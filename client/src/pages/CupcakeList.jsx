@@ -1,3 +1,4 @@
+import { useState, useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import Cupcake from "../components/Cupcake";
 
@@ -38,12 +39,26 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
+  const cupcakes = useLoaderData(); // Step 1: get all cupcakes
   console.info(useLoaderData());
 
   // Step 3: get all accessories
+  const [accessories, setAccessories] = useState([]);
+  useEffect(() => {
+    const fetchAccessories = async () => {
+      const response = await fetch("http://localhost:3310/api/accessories");
+      const data = await response.json();
+      setAccessories(data);
+    };
+    fetchAccessories();
+  }, []);
 
   // Step 5: create filter state
+  const [filter, setFilter] = useState(null);
+
+  const filteredCupcakes = cupcakes.filter((cupcake) =>
+    filter ? cupcake.accessory_id === filter : true
+  );
 
   return (
     <>
@@ -52,18 +67,30 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            id="cupcake-select"
+            value={filter}
+            onChange={(e) => setFilter(e.target.value)}
+          >
             <option value="">---</option>
+
             {/* Step 4: add an option for each accessory */}
+            {accessories.map((accessory) => (
+              <option key={accessory.id} value={parseInt(accessory.id, 10)}>
+                {accessory.name}
+              </option>
+            ))}
           </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
-        <li className="cupcake-item">
-          <Cupcake />
-        </li>
+        {filteredCupcakes.map((cupcake) => (
+          <li key={cupcake.id} className="cupcake-item">
+            <Cupcake data={cupcake} />
+          </li>
+        ))}
         {/* end of block */}
       </ul>
     </>
