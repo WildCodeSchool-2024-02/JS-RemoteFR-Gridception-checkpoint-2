@@ -40,11 +40,9 @@ someCupcakes.push(
 /* ************************************************************************* */
 
 function CupcakeList() {
-  // Step 1: get all cupcakes
   const cupcakes = useLoaderData();
 
 
-  // Step 3: get all accessories
   const [accessories, setAccessories] = useState([]);
 
   useEffect(() => {
@@ -56,22 +54,22 @@ function CupcakeList() {
     fetchAccessories();
   }, []);
 
-  // Step 5: create filter state
+  const [filterChoice, setFilterChoice] = useState("");
 
   return (
     <>
       <h1>My cupcakes</h1>
       <form className="center">
         <label htmlFor="cupcake-select">
-          {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
-            <option value="">---</option>
-            {/* Step 4: add an option for each accessory */}
+          <select id="cupcake-select"
+            onChange={(e) => setFilterChoice(e.target.value)}>
+            <option value="">All</option>
             {accessories.map((accessory) => (
               <option
-                key={accessory.id} value={accessory.name}>
-                {accessory.name}
+                key={accessory.id}
+                value={accessory.slug}>
+                {accessory.slug}
               </option>
 
             ))}
@@ -79,17 +77,15 @@ function CupcakeList() {
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
-        {/* Step 2: repeat this block for each cupcake */}
         {
-          cupcakes.map((cupcake) => (
-            <li key={cupcake.id} className="cupcake-item">
-              <Cupcake data={cupcake} />
-            </li>
-          ))
+          cupcakes.filter((cupcake) => cupcake.accessory === filterChoice || !filterChoice)
+            .map((cupcake) => (
+              <li key={cupcake.id} className="cupcake-item">
+                <Cupcake data={cupcake} />
+              </li>
+            ))
         }
-        {/* Step 5: filter cupcakes before repeating */}
 
-        {/* end of block */}
       </ul>
     </>
   );
