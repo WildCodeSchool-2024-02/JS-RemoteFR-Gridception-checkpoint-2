@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 
 import "./Cupcake.css";
+import { Link } from "react-router-dom";
 
 function Cupcake({ name, cream1, cream2, cream3, accessory }) {
   return (
@@ -41,6 +42,7 @@ function Cupcake({ name, cream1, cream2, cream3, accessory }) {
       </div>
 
       <div className="cupcake-name">{name}</div>
+      <Link to="/cupcakes/:id">More Details</Link>
     </div>
   );
 }

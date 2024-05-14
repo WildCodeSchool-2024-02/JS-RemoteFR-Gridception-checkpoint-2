@@ -34,12 +34,15 @@ const router = createBrowserRouter([
       {
         path: "/cupcakes",
         element: <CupcakeList />,
-        loader: cupcakeLoader
+        loader: cupcakeLoader,
+
+        children: [
+          {
+            path:"/cupcakes/:id",
+            element: <CupcakeDetails />,
+          }
+        ],
       },
-      {
-        path:"/cupcakes/:id",
-        element: <CupcakeDetails />,
-      }
     ],
   },
 ]);
