@@ -1,4 +1,6 @@
 import { useLoaderData } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import Cupcake from "../components/Cupcake";
 
 /* ************************************************************************* */
@@ -39,10 +41,20 @@ someCupcakes.push(
 
 function CupcakeList() {
   // Step 1: get all cupcakes
-  console.info(useLoaderData());
+
+  const cupcakes = useLoaderData();
+  console.info(useLoaderData);
+
+  const [accessories, setAccessories] = useState(null);
 
   // Step 3: get all accessories
+  useEffect(() => {
+    axios.get("http://localhost:3310/api/accessories").then((res) => {
+      setAccessories(res.data);
+    });
+  }, []);
 
+  console.info(accessories);
   // Step 5: create filter state
 
   return (
@@ -62,7 +74,16 @@ function CupcakeList() {
         {/* Step 2: repeat this block for each cupcake */}
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
-          <Cupcake />
+          {cupcakes.map((cupcake) => (
+            <Cupcake
+              key={cupcake.id}
+              color1={cupcake.color1}
+              color2={cupcake.color2}
+              color3={cupcake.color3}
+              accessory={cupcake.accessory}
+              name={cupcake.name}
+            />
+          ))}
         </li>
         {/* end of block */}
       </ul>

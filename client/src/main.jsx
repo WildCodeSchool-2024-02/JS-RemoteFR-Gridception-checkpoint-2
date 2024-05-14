@@ -20,6 +20,7 @@ const router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
+
     children: [
       {
         path: "/",
@@ -33,6 +34,7 @@ const router = createBrowserRouter([
         path: "/cupcakes",
         element: <CupcakeList />,
         loader: cupcakesLoader,
+
         // Step 1: load data here
       },
     ],
