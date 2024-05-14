@@ -68,6 +68,11 @@ useEffect(() => {
           Filter by{" "}
           <select id="cupcake-select">
             <option value="">---</option>
+            <option value="cherry">Cherry</option>
+            <option value="donut">Donut</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="wild">Wild</option>
+            <option value="christmas-candy">Christmas Candy</option>
             {/* Step 4: add an option for each accessory */}
           </select>
         </label>
