@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Cupcake from "../components/Cupcake";
@@ -77,14 +77,18 @@ function CupcakeList() {
           </select>
         </label>
       </form>
+
       <ul className="cupcake-list" id="cupcake-list">
         {data
           .filter(
             (cupcake) => cupcake.accessory_id === filterChoice || !filterChoice
           )
           .map((cupcake) => (
-            <Cupcake key={cupcake.id} data={cupcake} />
+            <Link key={cupcake.id} to={`/cupcakes/${cupcake.id}`}>
+              <Cupcake key={cupcake.id} data={cupcake} />
+            </Link>
           ))}
+
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
           <Cupcake />
