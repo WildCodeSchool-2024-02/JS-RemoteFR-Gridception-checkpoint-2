@@ -55,6 +55,7 @@ function CupcakeList() {
 
   console.info(allAccessory);
   // Step 5: create filter state
+  const [filterChoice, setFilterChoice] = useState("");
 
   return (
     <>
@@ -63,29 +64,36 @@ function CupcakeList() {
         <label htmlFor="cupcake-select">
           {/* Step 5: use a controlled component for select */}
           Filter by{" "}
-          <select id="cupcake-select">
+          <select
+            id="cupcake-select"
+            onChange={(e) => setFilterChoice(e.target.value)}
+          >
             <option value="">All</option>
             {/* Step 4: add an option for each accessory */}
-            <option value="1">Cherry</option>
-            <option value="2">Donut</option>
-            <option value="3">Chocolate</option>
-            <option value="4">WCS</option>
-            <option value="5">Christmas Candy</option>
+            <option value="cherry">Cherry</option>
+            <option value="donut">Donut</option>
+            <option value="chocolate">Chocolate</option>
+            <option value="wcs">WCS</option>
+            <option value="christmas-candy">Christmas Candy</option>
           </select>
         </label>
       </form>
       <ul className="cupcake-list" id="cupcake-list">
         {/* Step 2: repeat this block for each cupcake */}
 
-        {cupcakes.map((cupcake) => (
-          <div key={cupcake.id}>
-            <h1>{cupcake.name}</h1>
-            <h2>{cupcake.accessory}</h2>
-            <p>{cupcake.color1}</p>
-            <p> {cupcake.color2}</p>
-            <p>{cupcake.color3}</p>
-          </div>
-        ))}
+        {cupcakes
+          .filter(
+            (cupcake) => cupcake.accessory === filterChoice || !filterChoice
+          )
+          .map((cupcake) => (
+            <div key={cupcake.id}>
+              <h1>{cupcake.name}</h1>
+              <h2>{cupcake.accessory}</h2>
+              <p>{cupcake.color1}</p>
+              <p> {cupcake.color2}</p>
+              <p>{cupcake.color3}</p>
+            </div>
+          ))}
 
         {/* Step 5: filter cupcakes before repeating */}
         <li className="cupcake-item">
