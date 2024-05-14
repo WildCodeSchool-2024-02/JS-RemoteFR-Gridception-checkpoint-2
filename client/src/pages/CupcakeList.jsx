@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, Link } from "react-router-dom";
 import { useState } from "react";
 import Cupcake from "../components/Cupcake";
 
@@ -87,6 +87,7 @@ function CupcakeList() {
           )
           .map((cupcake) => (
             <div key={cupcake.id}>
+              <Link to={`/cupcakes/${cupcake.id}`} state={{data: cupcake}}>
               <Cupcake
                 cream1={cupcake.color1}
                 cream2={cupcake.color2}
@@ -94,6 +95,7 @@ function CupcakeList() {
                 accessory={cupcake.accessory}
                 name={cupcake.name}
               />
+              </Link>
             </div>
           ))}
 
