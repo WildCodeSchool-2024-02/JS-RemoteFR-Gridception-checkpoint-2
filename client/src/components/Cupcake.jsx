@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 import "./Cupcake.css";
 
-function Cupcake({ data }) {
+function Cupcake({ data, cream1, cream2, cream3 }) {
   return (
     <div className="cupcake-container">
       <div className="cupcake">
@@ -11,19 +11,19 @@ function Cupcake({ data }) {
           <div
             className="cream-1"
             style={{
-              backgroundColor: data.color1,
+              backgroundColor: cream1,
             }}
           />
           <div
             className="cream-2"
             style={{
-              backgroundColor: data.color2,
+              backgroundColor: cream2,
             }}
           />
           <div
             className="cream-3"
             style={{
-              backgroundColor: data.color3,
+              backgroundColor: cream3,
             }}
           />
         </div>
@@ -53,7 +53,12 @@ Cupcake.propTypes = {
     color3: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
   }),
+  cream1: PropTypes.string.isRequired,
+  cream2: PropTypes.string.isRequired,
+  cream3: PropTypes.string.isRequired,
 };
+
+
 
 Cupcake.defaultProps = {
   data: {

@@ -68,7 +68,10 @@ function CupcakeList() {
       allCupcakes.map((cupcake) => (
         <div key={cupcake.id}>
           <Cupcake
-          cupcake={cupcake}/>
+          cream1={cupcake.color1}
+          cream2={cupcake.color2}
+          cream3={cupcake.color3}
+          />
   
         </div>
       ))
