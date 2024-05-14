@@ -31,7 +31,7 @@ function CupcakeList() {
 
             {accessories.map((accessory) => (
               <option key={accessory.id} value={accessory.slug}>
-                {accessory.slug}
+                {accessory.name}
               </option>
             ))}
           </select>
